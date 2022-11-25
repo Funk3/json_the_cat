@@ -4,8 +4,12 @@ const url = `https://api.thecatapi.com/v1/breeds/search?q=${userInput}`
 
 const breedFetcher = () => {
   request(url, (error, response, body) => {
-    const data = JSON.parse(body);
-    console.log(data[0].description);
+    const result = JSON.parse(body)
+    if (result.length === 0) {
+      console.log("Sorry, that breed doesn't exist");
+      return;
+    } 
+      console.log(result[0].description);
   });
 };
 
